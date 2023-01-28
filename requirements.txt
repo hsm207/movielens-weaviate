@@ -1,4 +1,5 @@
 ipykernel==6.19.4
 ipywidgets==8.0.4
 ranx==0.3.4
+Scrapy==2.7.1
 weaviate-client==3.11.0
