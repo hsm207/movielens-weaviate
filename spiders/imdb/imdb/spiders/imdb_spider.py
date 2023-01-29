@@ -7,15 +7,20 @@ from scrapy.downloadermiddlewares.retry import get_retry_request
 
 class IMDBSpider(scrapy.Spider):
     name = "imdb"
+    urls = [
+        'https://www.imdb.com/title/tt0112401/plotsummary',
+        'https://www.imdb.com/title/tt0116731/plotsummary',
+        'https://www.imdb.com/title/tt0112427/plotsummary'
+    ]
 
     def start_requests(self):
-        urls = [
-            'https://www.imdb.com/title/tt0112401/plotsummary',
-            'https://www.imdb.com/title/tt0116731/plotsummary',
-            'https://www.imdb.com/title/tt0112427/plotsummary'
+        urls = getattr(self, 'urls', None)
 
-        ]
-        for url in urls:
+        if urls:
+            with open(urls, 'r') as f:
+                self.urls = f.readlines()
+
+        for url in self.urls:
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
