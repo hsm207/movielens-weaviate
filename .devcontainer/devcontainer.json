@@ -13,7 +13,8 @@
 				"ms-python.python",
 				"eamodio.gitlens",
 				"humao.rest-client",
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"GitHub.vscode-pull-request-github"
 			]
 		}
 	}
