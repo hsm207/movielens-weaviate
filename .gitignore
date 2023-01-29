@@ -1,2 +1,5 @@
 db
 data
+__pycache__
+*.log
+*.jsonl
