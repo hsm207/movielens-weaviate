@@ -25,6 +25,7 @@ FAKEUSERAGENT_PROVIDERS = [
 ]
 
 # Obey robots.txt rules
+ROBOTSTXT_OBEY = False
 RETRY_TIMES = 10
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
@@ -41,7 +42,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 1
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -69,6 +70,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
     'scrapy_fake_useragent.middleware.RetryUserAgentMiddleware': 401,
 }
+DUPEFILTER_DEBUG = True
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
