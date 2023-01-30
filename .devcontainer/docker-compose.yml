@@ -1,32 +1,38 @@
-version: '3.8'
+version: "3.8"
 
 services:
- devcontainer:
-  build:
-   context: ..
-   dockerfile: .devcontainer/Dockerfile
-  volumes:
-    - ..:/workspaces/movielens-weaviate:cached
-  command: sleep infinity
-  
- weaviate:
-  command:
-    - --host
-    - 0.0.0.0
-    - --port
-    - '8080'
-    - --scheme
-    - http
-  image: semitechnologies/weaviate:1.17.2
-  ports:
-    - "8080:8080"
-  restart: on-failure:0
-  environment:
-    QUERY_DEFAULTS_LIMIT: 25
-    AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
-    PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-    DEFAULT_VECTORIZER_MODULE: 'none'
-    ENABLE_MODULES: ''
-    CLUSTER_HOSTNAME: 'node1'
-  volumes:
-    - ../db:/var/lib/weaviate
+  devcontainer:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspaces/movielens-weaviate:cached
+    command: sleep infinity
+
+  weaviate:
+    command:
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8080"
+      - --scheme
+      - http
+    image: semitechnologies/weaviate:1.17.2
+    ports:
+      - "8080:8080"
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "true"
+      PERSISTENCE_DATA_PATH: "/var/lib/weaviate"
+      DEFAULT_VECTORIZER_MODULE: text2vec-transformers
+      ENABLE_MODULES: text2vec-transformers
+      TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
+      CLUSTER_HOSTNAME: "node1"
+    volumes:
+      - ../db:/var/lib/weaviate
+
+  t2v-transformers:
+    image: semitechnologies/transformers-inference:sentence-transformers-msmarco-distilroberta-base-v2
+    environment:
+      ENABLE_CUDA: 0 # set to 1 to enable
