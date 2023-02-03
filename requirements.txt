@@ -1,7 +1,9 @@
 ipykernel==6.19.4
 ipywidgets==8.0.4
+matplotlib==3.6.3
 pyarrow==11.0.0
 ranx==0.3.4
+scikit-image==0.19.3
 Scrapy==2.7.1
 scrapy-fake-useragent==1.4.4
 weaviate-client==3.11.0
