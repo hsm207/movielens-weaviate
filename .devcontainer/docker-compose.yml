@@ -31,6 +31,9 @@ services:
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
       CLUSTER_HOSTNAME: "node1"
       LOG_LEVEL: debug
+      GOGC: 100
+      GODEBUG: "gctrace=1"
+      GOMEMLIMIT: 16000MiB
     volumes:
       - ../db:/var/lib/weaviate
 
