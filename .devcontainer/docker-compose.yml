@@ -29,6 +29,7 @@ services:
       ENABLE_MODULES: 'text2vec-transformers,ref2vec-centroid'
       TRANSFORMERS_INFERENCE_API: http://t2v-transformers:8080
       CLUSTER_HOSTNAME: "node1"
+      LOG_LEVEL: debug
     volumes:
       - ../db:/var/lib/weaviate
 
